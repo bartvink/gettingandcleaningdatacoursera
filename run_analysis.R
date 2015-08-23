@@ -66,7 +66,17 @@ completeData <- cbind(features,activity,subject)
 #### Part 2 - Extract mean/sd for each measurement ####
 #######################################################
 
+meanSTD <- grep(".*mean.*|.*std.*", names(completeData), ignore.case=TRUE)
 
+#### Added activity and subject columns
+requiredCols <- c(meanSTD, 562, 563)
+
+#### Number of variables in completeData
+dim(completeData)
+extractedData <- completeData[,requiredCols]
+
+#### Number of variables in extractedData
+dim(extractedData)
 
 #################################################
 #### Part 3 - Name activites in the data set ####
