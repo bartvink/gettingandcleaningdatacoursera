@@ -50,6 +50,17 @@ featuresTest <- read.table("UCI HAR Dataset/test/X_test.txt", header = FALSE)
 #### Part 1 - Merging train/test data sets ####
 ###############################################
 
+subject <- rbind(subjectTrain, subjectTest)
+activity <- rbind(activityTrain, activityTest)
+features <- rbind(featuresTrain, featuresTest)
+
+#### Column names from features
+colnames(features) <- t(featureNames[2])
+
+#### Add activity and subject as a column to features
+colnames(activity) <- "Activity"
+colnames(subject) <- "Subject"
+completeData <- cbind(features,activity,subject)
 
 #######################################################
 #### Part 2 - Extract mean/sd for each measurement ####
