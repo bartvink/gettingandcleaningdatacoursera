@@ -18,6 +18,19 @@
 #### Part 0 - Setup Process ####
 ###############################################
 
+#### Setup for data.table package
+if (!require("data.table")) { install.packages("data.table") }
+require("data.table")
+
+#### Setup for reshape2 package
+if (!require("reshape2")) { install.packages("reshape2") }
+require("reshape2")
+
+#### Download and setup file structure for our project data
+filename <- "project_data.zip"
+fileurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileurl, filename, method="curl")
+unzip(filename) 
 
 ###############################################
 #### Part 1 - Merging train/test data sets ####
