@@ -22,15 +22,29 @@
 if (!require("data.table")) { install.packages("data.table") }
 require("data.table")
 
-#### Setup for reshape2 package
-if (!require("reshape2")) { install.packages("reshape2") }
-require("reshape2")
+#### Setup for dplyr package
+if (!require("dplyr")) { install.packages("dplyr") }
+require("dplyr")
 
 #### Download and setup file structure for our project data
 filename <- "project_data.zip"
 fileurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(fileurl, filename, method="curl")
 unzip(filename) 
+
+#### Assign feature names and activity labels
+featureNames <- read.table("UCI HAR Dataset/features.txt")
+activityLabels <- read.table("UCI HAR Dataset/activity_labels.txt", header = FALSE)
+
+#### Assign train data
+subjectTrain <- read.table("UCI HAR Dataset/train/subject_train.txt", header = FALSE)
+activityTrain <- read.table("UCI HAR Dataset/train/y_train.txt", header = FALSE)
+featuresTrain <- read.table("UCI HAR Dataset/train/X_train.txt", header = FALSE)
+
+#### Assign test data
+subjectTest <- read.table("UCI HAR Dataset/test/subject_test.txt", header = FALSE)
+activityTest <- read.table("UCI HAR Dataset/test/y_test.txt", header = FALSE)
+featuresTest <- read.table("UCI HAR Dataset/test/X_test.txt", header = FALSE)
 
 ###############################################
 #### Part 1 - Merging train/test data sets ####
@@ -42,9 +56,11 @@ unzip(filename)
 #######################################################
 
 
+
 #################################################
 #### Part 3 - Name activites in the data set ####
 #################################################
+
 
 
 ##################################################
