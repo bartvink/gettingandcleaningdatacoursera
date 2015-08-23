@@ -109,3 +109,13 @@ names(extractedData)<-gsub("gravity", "Gravity", names(extractedData))
 #############################################
 #### Part 5 - Create final tidy data set ####
 #############################################
+
+extractedData$Subject <- as.factor(extractedData$Subject)
+extractedData <- data.table(extractedData)
+
+#### Assign tidyData as a set with average
+tidyData <- aggregate(. ~Subject + Activity, extractedData, mean)
+tidyData <- tidyData[order(tidyData$Subject,tidyData$Activity),]
+
+#### tidyData into a text file
+write.table(tidyData, file = "tidy.txt", row.names = FALSE)
